@@ -10,7 +10,11 @@ HEADERS := $(wildcard $(INCLUDES) *.h)
 SOURCES := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
+<<<<<<< 716cc6586d5cdcb74e5d6e5ae0a95d580aa8cbb5
 all: project # docs
+=======
+all: project #docs
+>>>>>>> meh
 project: $(OBJECTS) 
 	@echo "Linkin Files: " $(OBJECTS) $(DRIVER)
 	@$(CXX) $(OBJECTS) $(DRIVER)  $(CXXFLAGS) -o $(Target)
@@ -30,7 +34,11 @@ $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 .PHONY: clean  clean_docs clean_proj
+<<<<<<< 716cc6586d5cdcb74e5d6e5ae0a95d580aa8cbb5
 clean: clean_proj  clean_docs
+=======
+clean: clean_proj  #clean_docs
+>>>>>>> meh
 
 clean_proj:
 	@rm -r $(OBJDIR)

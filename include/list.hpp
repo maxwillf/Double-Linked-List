@@ -17,6 +17,8 @@ namespace ls
 
 					Node(const T & d = T () , Node *p = nullptr, Node *n = nullptr)
 						: data (d),prev (p), next (n) {}
+					Node( T d = T () , Node *p = nullptr, Node *n = nullptr):
+						data (d),prev (p), next (n){}
 				};
 			public :
 				class const_iterator{
@@ -33,13 +35,21 @@ namespace ls
 						bool operator != ( const const_iterator & rhs ) const;
 					protected :
 						Node *current;
+<<<<<<< 716cc6586d5cdcb74e5d6e5ae0a95d580aa8cbb5
 				//		const_iterator( Node * p ) : current( p ){}
+=======
+						const_iterator( Node * p ) : current( p ){}
+>>>>>>> meh
 						friend class list<T>;
 
 				};
 				class iterator : public const_iterator{
 					public :
 						iterator( ) : const_iterator() { }
+<<<<<<< 716cc6586d5cdcb74e5d6e5ae0a95d580aa8cbb5
+=======
+						//iterator(T *ptr) : const_iterator(T *ptr) { }
+>>>>>>> meh
 						const T & operator * ( ) const;
 						T & operator * ( );
 						iterator & operator++ ();
@@ -47,7 +57,11 @@ namespace ls
 						iterator & operator-- ();
 						iterator operator-- (int);
 					protected :
+<<<<<<< 716cc6586d5cdcb74e5d6e5ae0a95d580aa8cbb5
 				//		iterator( Node *p ) : const_iterator( p ){};
+=======
+						iterator( Node *p ) : const_iterator( p ){}
+>>>>>>> meh
 						friend class list<T>;
 
 				};
