@@ -4,6 +4,9 @@
 int main(int argc, char *argv[])
 {
 	ls::list<int> lista;
+	lista.push_back(6);
+	lista.push_back(7);
+	lista.push_back(8);
 	lista.push_front(5);
 	lista.push_front(6);
 	lista.push_front(7);

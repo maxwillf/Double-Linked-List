@@ -36,7 +36,14 @@ namespace ls
 			m_head->next = push;
 			m_size++;
 		}
+		template <typename T>
+		void list<T>::push_back( const T & value ){
 
+			Node *push = new Node(value,m_tail->prev,m_tail);
+			m_tail->prev->next = push;
+			m_tail->prev = push;
+			m_size++;
+		}
 	// [II] ITERATORS - DONE
 
 	/* Returns a iterator to the beginning of the list */
@@ -165,8 +172,8 @@ namespace ls
 	template <typename T>
 		bool list<T>::const_iterator::operator != ( const const_iterator & rhs ) const{
 
-			std::cout << "lhs  " << this->current << std::endl;
-			std::cout << "rhs  " << rhs.current << std::endl;
+	//		std::cout << "lhs  " << this->current << std::endl;
+	//		std::cout << "rhs  " << rhs.current << std::endl;
 			return this->current != rhs.current;
 	}
 
