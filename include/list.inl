@@ -50,13 +50,23 @@ namespace ls
 		std::cout << m_tail << std::endl;
 	}
 
+	// [II] ITERATORS - DONE
 	template <class T>
 	typename list<T>::iterator list<T>::begin(){
 		return list<T>::iterator(m_head);
+	}
+		
+	template <class T>
+	typename list<T>::const_iterator list<T>::cbegin() const{
+		return list<T>::const_iterator(m_head->next);
 	}
 	
 	template <class T>
 	typename list<T>::iterator list<T>::end(){
 		return list<T>::iterator(m_tail);
 	}
+
+	template <class T>
+	typename list<T>::const_iterator list<T>::cend() const{
+		return list<T>::const_iterator(m_tail);
 }

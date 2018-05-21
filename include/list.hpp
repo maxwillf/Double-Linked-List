@@ -65,19 +65,44 @@ namespace ls
 						friend class list<T>;
 
 				};
+			
 				// [I] SPECIAL MEMBERS
+			
 				list(void);
 				~list( );
 				list( const list & );
 				list & operator = ( const list & );
+			
 				// [II] ITERATORS
+			
+				/*! \brief Returns a iterator that points to the beginning of the list
+				 * \return Iterator to the beginning of the list 
+				 */
+
 				iterator begin( );
+				
+				/*! \brief Returns a constant iterator that points to the beginning of the list
+				 * \return Constant iterator to the beginning of the list
+				 */
+
 				const_iterator cbegin( ) const;
+				
+				/*! \brief Returns a iterator that points to the end of list
+				 * \return Iterator to the end of list
+				 */			
+			
 				iterator end( );
+
+				/*! \brief Returns a constant iterator to the end of list
+				 * \return Constant iterator to the end of list
+				 */
+
 				const_iterator cend( ) const;
+				
 				// [III] Capacity
 				int size( ) const;
 				bool empty( ) const;
+			
 				// [IV] Modifiers
 				void clear( );
 				T & front( );
@@ -89,6 +114,7 @@ namespace ls
 				void pop_front( );
 				void pop_back( );
 				void assign(const T& value );
+			
 				// [IV-a] Modifiers with iterators
 				template < class InItr >
 					void assign( InItr first, InItr last );
