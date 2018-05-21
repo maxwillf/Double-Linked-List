@@ -27,9 +27,40 @@ namespace ls
 
 		list( std::initializer_list<T> ilist );
 		
-		class const_iterator;	
+		class const_iterator{
+			public:
+			const_iterator( );
+			const T & operator * ( ) const;
+			const_iterator & operator ++ ( );// ++it;
+			const_iterator operator ++ ( int ); // it++;
+			const_iterator & operator -- ( ); // --it;
+			const_iterator operator -- ( int ); // it--;
+			bool operator == ( const const_iterator & rhs ) const;
+			bool operator != ( const const_iterator & rhs ) const;
+			
+			protected :
+			Node *current;
+			const_iterator( Node * p ) : current( p ){}
+			friend class list<T>;
+			
+		};
 
-		class iterator;
+
+		class iterator : public const_iterator{
+			public :
+			iterator( ) : const_iterator() { }
+			const T & operator * ( ) const;
+			T & operator * ( );
+		
+			iterator & operator++ ();
+			iterator operator++ (int);
+			iterator & operator-- ();
+			iterator operator-- (int);
+		
+			protected :
+			iterator( Node *p ) : const_iterator( p ){}
+			friend class list<T>;
+		};
 
 		// [I] SPECIAL MEMBERS
 
@@ -150,39 +181,7 @@ namespace ls
 		
 };
 
-class const_iterator{
-	public:
-	const_iterator( );
-	const T & operator * ( ) const;
-	const_iterator & operator ++ ( );// ++it;
-	const_iterator operator ++ ( int ); // it++;
-	const_iterator & operator -- ( ); // --it;
-	const_iterator operator -- ( int ); // it--;
-	bool operator == ( const const_iterator & rhs ) const;
-	bool operator != ( const const_iterator & rhs ) const;
-	
-	protected :
-	Node *current;
-	const_iterator( Node * p ) : current( p ){}
-	friend class list<T>;
-	
-};
 
-class iterator : public const_iterator{
-	public :
-	iterator( ) : const_iterator() { }
-	const T & operator * ( ) const;
-	T & operator * ( );
-
-	iterator & operator++ ();
-	iterator operator++ (int);
-	iterator & operator-- ();
-	iterator operator-- (int);
-
-	protected :
-	iterator( Node *p ) : const_iterator( p ){}
-	friend class list<T>;
-};
 
 }
 

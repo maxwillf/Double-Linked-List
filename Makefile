@@ -35,8 +35,6 @@ $(OBJDIR):
 
 .PHONY: clean  clean_docs clean_proj
 
-clean: clean_proj  clean_docs
-
 clean: clean_proj  #clean_docs
 
 
