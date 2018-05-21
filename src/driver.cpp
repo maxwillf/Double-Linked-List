@@ -5,8 +5,10 @@ int main(int argc, char *argv[])
 {
 	ls::list<int> lista;
 	lista.push_front(5);
-	auto x =  lista.begin() ;
-	std::cout << *x << std::endl;
-
+	lista.push_front(6);
+	lista.push_front(7);
+	for (auto i = lista.begin(); i != lista.end(); ++i){
+		std::cout << *i << std::endl;
+	}
 	return 0;
 }

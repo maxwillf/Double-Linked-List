@@ -34,10 +34,7 @@ namespace ls
 			Node *push = new Node(value,m_head,m_head->next);
 			m_head->next->prev = push;
 			m_head->next = push;
-			std::cout << m_head->next->data << std::endl;
-			std::cout << m_head->next << std::endl;
-			std::cout << m_head << std::endl;
-			std::cout << m_tail << std::endl;
+			m_size++;
 		}
 
 	// [II] ITERATORS - DONE
@@ -144,9 +141,33 @@ namespace ls
 		void assign(const T& value ){
 		}
 
-	/* Iterators operators */
+	/*! Iterator operators */
 	template <typename T>
 	T & list<T>::iterator::operator * ( ){
 		return this->current->data;
 	}
+	
+	/*! Iterator operator ++ */
+	template <typename T>
+	typename list<T>::iterator & list<T>::iterator::operator ++( ){
+		this->current = this->current->next;
+		return *this;
+	}
+	/*! Iterator operator ++ */
+	template <typename T>
+	typename list<T>::iterator list<T>::iterator::operator ++(int ){
+		auto copy = *this;
+		this->current = this->current->next;
+		
+		return copy;
+	}
+
+	template <typename T>
+		bool list<T>::const_iterator::operator != ( const const_iterator & rhs ) const{
+
+			std::cout << "lhs  " << this->current << std::endl;
+			std::cout << "rhs  " << rhs.current << std::endl;
+			return this->current != rhs.current;
+	}
+
 }
