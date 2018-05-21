@@ -29,6 +29,7 @@ namespace ls
 
 		}
 
+	/* Insert a element in the beggining of list */
 	template <typename T>
 		void list<T>::push_front(const T& value){
 			Node *push = new Node(value,m_head,m_head->next);
@@ -36,6 +37,7 @@ namespace ls
 			m_head->next = push;
 			m_size++;
 		}
+	/* Insert a element at the end of list */
 		template <typename T>
 		void list<T>::push_back( const T & value ){
 
@@ -123,16 +125,53 @@ namespace ls
 				throw std::out_of_range("The list is empty!");
 			return m_tail->prev->data;
 		}
-
-	/* Insert a element in the beggining of list */
-	template <typename T>	
-		void push_front( const T & value ){
-		}
-
-	/* Insert a element at the end of list */
+	/*! Inserts value before itr position
+	 * @params itr
+	 * @params value
+	 * @return iterator to inserted value position
+	 * */
 	template <typename T>
-		void push_back( const T & value ){
+	typename list<T>::iterator list<T>::insert
+	(typename list<T>::const_iterator itr, const T & value ){
+
+		typename list<T>::Node* inserted =
+			new typename list<T>::Node(value,itr.current->prev,itr.current);
+		m_size++;
+		itr.current->prev->next = inserted;
+		itr.current->prev = inserted;
+		return inserted;
+	}
+	
+	/*! Inserts the initializer_list's elements before itr position
+	 * @params itr
+	 * @params ilist
+	 * @return iterator to inserted values position
+	 * */
+	template <typename T>
+	typename list<T>::iterator list<T>::insert( const_iterator pos, std::initializer_list<T> ilist ){
+
+			for (auto i = ilist.begin(); i < ilist.end(); ++i) {
+				list<T>::insert(pos,*i);	
+			}
+			return iterator(pos.current);
 		}
+
+	/*! Inserts the elements in the [first,last) range before itr position
+	 * @params itr
+	 * @params first
+	 * @params last
+	 * @return iterator to inserted values position
+	 * */
+	template <typename T>
+	template <typename InItr>	
+	typename list<T>::iterator list<T>::insert(iterator pos, InItr first, InItr last){
+
+		for (auto i = first; i != last; ++i) {
+			list<T>::insert(pos,*i);	
+		}
+		return pos;
+	}
+
 
 	/* Remove a element at the beginning of list */
 	template <typename T>	
