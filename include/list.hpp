@@ -99,20 +99,58 @@ namespace ls
 
 				const_iterator cend( ) const;
 				
-				// [III] Capacity
+				// [III] Capacity 
+			
+				/*! \brief Returns the number of elements in the list
+				 * \return Logical size of list
+				 */
+			
 				int size( ) const;
+		
+				/*! \brief Verifies if the list is empty
+				 * \return True if is the list empty, else returns False
+				 */		
+		
 				bool empty( ) const;
 			
 				// [IV] Modifiers
+				
+				/*! \brief Clear the list
+				 */
+				
 				void clear( );
+
+				/*! \brief Returns a reference to the first element of the list
+				 * \return The value of the first element of the list
+				 */				
+
 				T & front( );
+			
+				/*! \brief Returns a constant reference to the first element of the list
+				 * \return The value of the first element of the list
+				 */	
+			
 				const T & front( ) const;
+				
+				/*! \brief Returns a reference to the last element of the list
+				 * \return The value of the last element of the list
+				 */
+		
 				T & back( );
+		
+				/*! \brief Returns a constant reference to the last element of the list 
+				 * \return The value of the last element of the list
+				 */		
 				const T & back( ) const;
+				
 				void push_front( const T & value );
+				
 				void push_back( const T & value );
+				
 				void pop_front( );
+				
 				void pop_back( );
+				
 				void assign(const T& value );
 			
 				// [IV-a] Modifiers with iterators
