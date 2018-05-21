@@ -6,8 +6,6 @@ namespace ls
 	template <typename T>
 		list<T>::list(void){
 
-			Node *m_head = new Node();
-			Node *m_tail = new Node();
 			m_size = 0;
 			m_head = new Node();
 			m_tail = new Node();
@@ -47,7 +45,7 @@ namespace ls
 	/* Returns a iterator to the beginning of the list */
 	template <typename T>
 		typename ls::list<T>::iterator ls::list<T>::begin(){
-			return ls::list<T>::iterator(m_head);
+			return ls::list<T>::iterator(m_head->next);
 		}
 
 	/* Returns a constant iterator to the beginning of the list */
@@ -145,4 +143,10 @@ namespace ls
 	template <typename T>	
 		void assign(const T& value ){
 		}
+
+	/* Iterators operators */
+	template <typename T>
+	T & list<T>::iterator::operator * ( ){
+		return this->current->data;
+	}
 }
