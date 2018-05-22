@@ -31,7 +31,7 @@ namespace ls
 			
 			assign(other.cbegin(),other.cend());
 
-			
+			return *this;	
 		}
 
 		template <typename T>
