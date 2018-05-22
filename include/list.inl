@@ -87,6 +87,9 @@ namespace ls
 	template <typename T>
 		void list<T>::clear(){
 			auto it(begin());
+			while(it++ != end()){
+				erase(ls::list<T>::iterator(it.data->prev));
+			}
 		}	
 
 	/* Returns a reference to the first element of the list */	
