@@ -17,15 +17,17 @@ int main(int argc, char *argv[])
 	std::cout << std::endl;
 
 	auto itr = lista.begin();
-	++(++itr);
-	lista.insert(itr,{-1,-2,-3,-4,-5});
+	itr = itr+ 2;
+	auto x = lista.insert(itr,{-1,-2,-3,-4,-5});
 
-	std::cout << "Teste insert " << std::endl;
+	std::cout << "Teste insert initializer list" << std::endl;
 	for (auto i = lista.begin(); i != lista.end(); ++i){
 		std::cout << *i << std::endl;
 	}
+	std::cout << "Teste retorno insert: " << *x << std::endl;
 
-	lista.insert(lista.begin(),++(++lista.begin()),lista.end());
+	x = lista.insert(lista.begin(),lista.begin()+2,lista.end());
+	std::cout << "Teste retorno insert: " << *x << std::endl;
 	
 	std::cout << "Teste insert [first,last) " << std::endl;
 	for (auto i = lista.begin(); i != lista.end(); ++i){

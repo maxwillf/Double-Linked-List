@@ -152,11 +152,14 @@ namespace ls
 	 * */
 	template <typename T>
 	typename list<T>::iterator list<T>::insert( const_iterator pos, std::initializer_list<T> ilist ){
-
+			
+			list<T>::iterator itr;
 			for (auto i = ilist.begin(); i < ilist.end(); ++i) {
-				list<T>::insert(pos,*i);	
+				 itr = list<T>::insert(pos,*i);	
 			}
-			return iterator(pos.current);
+
+			int size = ilist.size();
+			return itr-size;
 		}
 
 	/*! Inserts the elements in the [first,last) range before itr position
@@ -172,7 +175,7 @@ namespace ls
 		for (auto i = first; i != last; ++i) {
 			list<T>::insert(pos,*i);	
 		}
-		return pos;
+		return pos-(last-first);
 	}
 
 
@@ -202,6 +205,22 @@ namespace ls
 		this->current = this->current->next;
 		return *this;
 	}
+	
+	/*! Iterator operator -- */
+	template <typename T>
+	typename list<T>::iterator & list<T>::iterator::operator --( ){
+		this->current = this->current->prev;
+		return *this;
+	}
+	
+	/*! Iterator operator -- */
+	template <typename T>
+	typename list<T>::iterator list<T>::iterator::operator --(int ){
+		auto copy = *this;
+		this->current = this->current->prev;
+		
+		return copy;
+	}
 	/*! Iterator operator ++ */
 	template <typename T>
 	typename list<T>::iterator list<T>::iterator::operator ++(int ){
@@ -217,6 +236,52 @@ namespace ls
 	//		std::cout << "lhs  " << this->current << std::endl;
 	//		std::cout << "rhs  " << rhs.current << std::endl;
 			return this->current != rhs.current;
+	}
+	template <typename T>
+	typename list<T>::iterator & list<T>::iterator::operator+ (int a){
+
+		for (int i = 0; i < a; ++i) {
+			
+			if (this->current == nullptr){
+				throw std::out_of_range("Iterator went out of bounds!");
+			}
+			this->current = this->current->next;
+			
+		}
+		return *this;
+	}
+	/*! Iterator - operand*/	
+	template <typename T>
+	typename list<T>::iterator & list<T>::iterator::operator- (int a){
+
+		for (int i = 0; i < a; ++i) {
+			
+			if (this->current == nullptr){
+				throw std::out_of_range("Iterator went out of bounds!");
+			}
+			this->current = this->current->prev;
+			
+		}
+		return *this;
+	}
+	
+	/*! Const_Iterator - operand*/	
+	template <typename T>
+	typename list<T>::const_iterator & list<T>::const_iterator::operator- (int a){
+
+		for (int i = 0; i < a; ++i) {
+			
+			if (this->current == nullptr){
+				throw std::out_of_range("Iterator went out of bounds!");
+			}
+			this->current = this->current->prev;
+			
+		}
+		return *this;
+	}
+	template <typename T>
+	std::ptrdiff_t list<T>::iterator::operator- (list<T>::iterator rhs){
+		return this->current - rhs.current;
 	}
 
 }

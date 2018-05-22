@@ -27,12 +27,13 @@ namespace ls
 		
 		class const_iterator{
 			public:
-			const_iterator( );
+			const_iterator( ) = default;
 			const T & operator * ( ) const;
 			const_iterator & operator ++ ( );// ++it;
 			const_iterator operator ++ ( int ); // it++;
 			const_iterator & operator -- ( ); // --it;
 			const_iterator operator -- ( int ); // it--;
+			const_iterator & operator- (int );
 			bool operator == ( const const_iterator & rhs ) const;
 			bool operator != ( const const_iterator & rhs ) const;
 			
@@ -52,8 +53,11 @@ namespace ls
 		
 			iterator & operator++ ();
 			iterator operator++ (int);
+			iterator & operator+ (int);
 			iterator & operator-- ();
 			iterator operator-- (int);
+			iterator & operator- (int );
+			std::ptrdiff_t operator- (iterator rhs);
 		
 			protected :
 			iterator( Node *p ) : const_iterator( p ){}
