@@ -18,7 +18,7 @@ And execute `make` to compile the program.
 # Execute
 To execute the drive function
 
-`./driverlist
+`./driverlist`
 # Authorship
 
 This program was made by [Felipe Andrade](https://github.com/felpsisonfire/) and [Max William](https://github.com/maxwillf/) with MIT Licence, for Basic Data Structures I discipline from Computer Science course on [Universidade Federal do Rio Grande do Norte](https://www.ufrn.br)
