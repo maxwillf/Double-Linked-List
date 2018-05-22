@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iterator> //for std::distance
 
+
+using size_type = size_t;
 namespace ls
 {
 
@@ -18,7 +20,7 @@ namespace ls
 			Node( T d = T () , Node *p = nullptr, Node *n = nullptr):data (d),prev (p), next (n){}
 		};
 		
-		int m_size;
+		size_type m_size;
 		Node *m_head;
 		Node *m_tail;
 
@@ -53,10 +55,10 @@ namespace ls
 		
 			iterator & operator++ ();
 			iterator operator++ (int);
-			iterator & operator+ (int);
+			iterator  operator+ (int);
 			iterator & operator-- ();
 			iterator operator-- (int);
-			iterator & operator- (int );
+			iterator  operator- (int );
 		
 			protected :
 			iterator( Node *p ) : const_iterator( p ){}
@@ -182,7 +184,7 @@ namespace ls
 	
 		iterator erase( const_iterator itr );
 
-		iterator erase( const_iterator first, const_iterator last );
+		iterator erase( iterator first, iterator last );
 
 		const_iterator find( const T & value ) const;
 		

@@ -32,5 +32,21 @@ int main(int argc, char *argv[])
 	std::cout << "Teste retorno insert [first,last): " << *x << std::endl;
 	
 	std::cout << "Teste size: " << lista.size() << std::endl; 
+
+	x = lista.erase(lista.begin());
+	std::cout << "Teste erase pos "<< *x << std::endl;
+	std::cout <<  std::endl;
+
+	for (auto i = lista.begin(); i != lista.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+
+	x = lista.erase(lista.begin()+3,lista.end());
+	std::cout << "Teste erase  [first,last) " << std::endl;
+	for (auto i = lista.begin(); i != lista.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+	lista.clear();
+	std::cout << "list size after clear : " << lista.size() << std::endl;
 	return 0;
 }

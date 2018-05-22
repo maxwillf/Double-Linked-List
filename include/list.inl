@@ -15,16 +15,9 @@ namespace ls
 
 	template <typename T>
 		list<T>::~list(){
+			if(m_size != 0) clear();
 
-			Node *temp = m_head;
-			while (temp != m_tail){
-				temp = temp->next;
-				if(temp->prev != m_head){
-					delete temp->prev;
-				}
-			}
-
-			delete m_head;
+	 		delete m_head;
 			delete m_tail;
 
 		}
@@ -90,10 +83,9 @@ namespace ls
 	/* Clear the list */
 	template <typename T>
 		void list<T>::clear(){
-			auto it(begin());
-			while(it++ != end()){
-				erase(ls::list<T>::iterator(it.data->prev));
-			}
+			
+			erase(begin(),end());
+			m_size = 0;
 		}	
 
 	/* Returns a reference to the first element of the list */	
@@ -173,7 +165,7 @@ namespace ls
 	typename list<T>::iterator list<T>::insert(iterator pos, InItr first, InItr last){
 
 		list<T>::iterator itr;
-		int size;
+		int size = 0;
 		for (auto i = first; i != last; ++i) {
 			itr = list<T>::insert(pos,*i);	
 			size++;
@@ -214,6 +206,9 @@ namespace ls
 	template <typename T>
 	typename list<T>::iterator & list<T>::iterator::operator --( ){
 		this->current = this->current->prev;
+		if (this->current == nullptr){
+			throw std::out_of_range("Iterator went out of bounds!");
+		}
 		return *this;
 	}
 	
@@ -222,7 +217,10 @@ namespace ls
 	typename list<T>::iterator list<T>::iterator::operator --(int ){
 		auto copy = *this;
 		this->current = this->current->prev;
-		
+
+		if (this->current == nullptr){
+			throw std::out_of_range("Iterator went out of bounds!");
+		}
 		return copy;
 	}
 	/*! Iterator operator ++ */
@@ -246,31 +244,33 @@ namespace ls
 			return this->current == rhs.current;
 	}
 	template <typename T>
-	typename list<T>::iterator & list<T>::iterator::operator+ (int a){
-
+	typename list<T>::iterator list<T>::iterator::operator+ (int a){
+	
+		auto copy = *this;
 		for (int i = 0; i < a; ++i) {
 			
-			if (this->current == nullptr){
+			if (copy.current == nullptr){
 				throw std::out_of_range("Iterator went out of bounds!");
 			}
-			this->current = this->current->next;
+			copy.current = copy.current->next;
 			
 		}
-		return *this;
+		return copy;
 	}
 	/*! Iterator - operand*/	
 	template <typename T>
-	typename list<T>::iterator & list<T>::iterator::operator- (int a){
-
+	typename list<T>::iterator list<T>::iterator::operator- (int a){
+		
+		auto copy = *this;
 		for (int i = 0; i < a; ++i) {
 			
-			if (this->current == nullptr){
+			if (copy.current == nullptr){
 				throw std::out_of_range("Iterator went out of bounds!");
 			}
-			this->current = this->current->prev;
+			copy.current = copy.current->prev;
 			
 		}
-		return *this;
+		return copy;
 	}
 	
 	/*! Const_Iterator - operand*/	
@@ -287,5 +287,31 @@ namespace ls
 		}
 		return *this;
 	}
+	/*! Erase 
+	 * @params pos
+	 * */
+	template <typename T>
+	 typename list<T>::iterator list<T>::erase (list<T>::const_iterator pos){
+			
+		auto ret = list<T>::iterator(pos.current->next); 
+		 if(pos != end()){
 
+			pos.current->next->prev = pos.current->prev;
+			pos.current->prev->next = pos.current->next;
+			delete pos.current;
+		 }
+		 m_size--;
+		 return ret;
+	}
+
+	template <typename T>
+	 typename list<T>::iterator list<T>::erase 
+	 (list<T>::iterator first, list<T>::iterator last){
+		
+		 list<T>::iterator itr = erase(first);
+		 while(itr != last){
+			itr = erase(itr);
+		 }
+		return itr;
+	 }
 }
