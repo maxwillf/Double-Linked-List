@@ -57,7 +57,6 @@ namespace ls
 			iterator & operator-- ();
 			iterator operator-- (int);
 			iterator & operator- (int );
-			std::ptrdiff_t operator- (iterator rhs);
 		
 			protected :
 			iterator( Node *p ) : const_iterator( p ){}

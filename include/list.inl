@@ -157,9 +157,9 @@ namespace ls
 			for (auto i = ilist.begin(); i < ilist.end(); ++i) {
 				 itr = list<T>::insert(pos,*i);	
 			}
-
+			if(itr == begin()) return itr;
 			int size = ilist.size();
-			return itr-size;
+			return itr+1-size;
 		}
 
 	/*! Inserts the elements in the [first,last) range before itr position
@@ -172,10 +172,14 @@ namespace ls
 	template <typename InItr>	
 	typename list<T>::iterator list<T>::insert(iterator pos, InItr first, InItr last){
 
+		list<T>::iterator itr;
+		int size;
 		for (auto i = first; i != last; ++i) {
-			list<T>::insert(pos,*i);	
+			itr = list<T>::insert(pos,*i);	
+			size++;
 		}
-		return pos-(last-first);
+		if(itr == begin()) return itr;
+		return itr+1-size;
 	}
 
 
@@ -233,9 +237,13 @@ namespace ls
 	template <typename T>
 		bool list<T>::const_iterator::operator != ( const const_iterator & rhs ) const{
 
-	//		std::cout << "lhs  " << this->current << std::endl;
-	//		std::cout << "rhs  " << rhs.current << std::endl;
 			return this->current != rhs.current;
+	}
+	
+	template <typename T>
+		bool list<T>::const_iterator::operator == ( const const_iterator & rhs ) const{
+
+			return this->current == rhs.current;
 	}
 	template <typename T>
 	typename list<T>::iterator & list<T>::iterator::operator+ (int a){
@@ -278,10 +286,6 @@ namespace ls
 			
 		}
 		return *this;
-	}
-	template <typename T>
-	std::ptrdiff_t list<T>::iterator::operator- (list<T>::iterator rhs){
-		return this->current - rhs.current;
 	}
 
 }
