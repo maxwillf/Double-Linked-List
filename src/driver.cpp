@@ -75,5 +75,18 @@ int main(int argc, char *argv[])
 	for (auto i = lista2.begin(); i != lista2.end(); ++i) {
 		std::cout << *i << std::endl;
 	}
+
+	ls::list<int> lista3 = lista2;
+	std::cout << "list3 assignment operator: "  << std::endl;
+	for (auto i = lista3.begin(); i != lista3.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+	
+	ls::list<int> lista4(lista3);
+	
+	std::cout << "list4 copy constructor: "  << std::endl;
+	for (auto i = lista4.begin(); i != lista4.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
 	return 0;
 }

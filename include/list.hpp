@@ -81,7 +81,7 @@ namespace ls
 		list( std::initializer_list<T> ilist );
 		/*! \brief */
 
-		list( const list & );
+		list( const list& );
 	
 		/*! \brief */
 			

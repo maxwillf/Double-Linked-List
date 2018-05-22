@@ -19,12 +19,22 @@ namespace ls
 			insert(begin(),ilist.begin(),ilist.end());
 		}
 	
-/*	template <typename T>
-		list<T>::list( const T& list ): list<T>::list(){
-
-			insert(begin(),ilist.begin(),ilist.end());
-		} */
 	template <typename T>
+		list<T>::list( const list<T> & other ): list<T>::list(){
+			*this = other;
+		} 
+		
+	
+		template <typename T>
+		list<T>& list<T>::operator= ( const list<T> & other ){
+
+			
+			assign(other.cbegin(),other.cend());
+
+			
+		}
+
+		template <typename T>
 		list<T>::~list(){
 			if(m_size != 0) clear();
 
@@ -75,6 +85,50 @@ namespace ls
 		typename ls::list<T>::const_iterator ls::list<T>::cend() const{
 			return ls::list<T>::const_iterator(m_tail);
 		}
+	template <typename T>		
+	const T & list<T>::const_iterator::operator * ( ) const{
+		return this->current->data;
+	}
+	
+	
+	/*! Iterator operator ++ */
+	template <typename T>		
+	typename list<T>::const_iterator & list<T>::const_iterator::operator ++ ( ){// ++it;
+	
+		this->current = this->current->next;
+		return *this;
+	}
+	
+	/*! Iterator operator ++ */
+	template <typename T>		
+	typename list<T>::const_iterator list<T>::const_iterator::operator ++ ( int ){ // it++;
+	
+		auto copy = *this;	
+		this->current = this->current->next;
+		return *copy;
+	}
+	/*! Iterator operator -- */
+	template <typename T>
+	typename list<T>::const_iterator list<T>::const_iterator::operator --(int ){
+		auto copy = *this;
+		this->current = this->current->prev;
+
+		if (this->current == nullptr){
+			throw std::out_of_range("Iterator went out of bounds!");
+		}
+		return copy;
+	}
+	
+	/*! Iterator operator -- */
+	template <typename T>
+	typename list<T>::const_iterator & list<T>::const_iterator::operator --( ){
+		this->current = this->current->prev;
+
+		if (this->current == nullptr){
+			throw std::out_of_range("Iterator went out of bounds!");
+		}
+		return *this;
+	}
 
 	// [III] CAPACITY - DONE
 
@@ -120,7 +174,7 @@ namespace ls
 		T & list<T>::back(){
 			if(empty())
 				throw std::out_of_range("The list is empty!");
-			return m_head->prev->data;
+			return m_tail->prev->data;
 		}
 
 
@@ -239,7 +293,9 @@ namespace ls
 	typename list<T>::iterator list<T>::iterator::operator ++(int ){
 		auto copy = *this;
 		this->current = this->current->next;
-		
+		if (this->current == nullptr){
+			throw std::out_of_range("Iterator went out of bounds!");
+		}
 		return copy;
 	}
 
@@ -341,6 +397,7 @@ namespace ls
 		
 		insert(begin(),first,last);
 	} 
+
 	template <typename T>
 	void list<T>::assign( std::initializer_list<T> ilist ){
 
