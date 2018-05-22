@@ -17,7 +17,7 @@ namespace ls
 		list<T>::~list(){
 
 			Node *temp = m_head;
-			while (temp->next != m_tail){
+			while (temp != m_tail){
 				temp = temp->next;
 				if(temp->prev != m_head){
 					delete temp->prev;
