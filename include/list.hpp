@@ -7,6 +7,7 @@
 
 
 using size_type = size_t;
+
 namespace ls
 {
 
@@ -165,7 +166,7 @@ namespace ls
 				
 		void pop_back( );
 				
-		void assign(const T& value );
+		void assign(int count, const T& value );
 			
 		// [IV-a] Modifiers with iterators
 

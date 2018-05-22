@@ -46,7 +46,34 @@ int main(int argc, char *argv[])
 	for (auto i = lista.begin(); i != lista.end(); ++i) {
 		std::cout << *i << std::endl;
 	}
-	lista.clear();
-	std::cout << "list size after clear : " << lista.size() << std::endl;
+	//lista.clear();
+	//std::cout << "list size after clear : " << lista.size() << std::endl;
+	
+	
+	ls::list<int> lista2{{1,2,3,4}};
+	std::cout << "list2 itializer list : " << lista2.size() << std::endl;
+
+	for (auto i = lista2.begin(); i != lista2.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+	lista2.assign(5,7);
+	std::cout << "list2 assign: "  << std::endl;
+	for (auto i = lista2.begin(); i != lista2.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+
+	lista2.assign(lista.begin(),lista.end());
+	
+	std::cout << "list2 assign [first,last): "  << std::endl;
+	for (auto i = lista2.begin(); i != lista2.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+
+	lista2.assign({1,2,3,4,5});
+	
+	std::cout << "list2 assign initializer list: "  << std::endl;
+	for (auto i = lista2.begin(); i != lista2.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
 	return 0;
 }

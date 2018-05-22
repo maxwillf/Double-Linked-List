@@ -14,6 +14,17 @@ namespace ls
 		}
 
 	template <typename T>
+		list<T>::list( std::initializer_list<T> ilist ): list<T>::list(){
+
+			insert(begin(),ilist.begin(),ilist.end());
+		}
+	
+/*	template <typename T>
+		list<T>::list( const T& list ): list<T>::list(){
+
+			insert(begin(),ilist.begin(),ilist.end());
+		} */
+	template <typename T>
 		list<T>::~list(){
 			if(m_size != 0) clear();
 
@@ -314,4 +325,28 @@ namespace ls
 		 }
 		return itr;
 	 }
+	template <typename T>
+	void list<T>::assign(int count, const T& value ){
+		if(m_size != 0) list<T>::clear(); 
+
+		for (int i = 0; i < count; ++i) {
+			list<T>::insert(list<T>::begin(),value);
+		}
+	}
+	
+	template <typename T>
+	template <typename InItr >
+	void list<T>::assign( InItr first, InItr last ){
+		if(m_size != 0) list<T>::clear(); 
+		
+		insert(begin(),first,last);
+	} 
+	template <typename T>
+	void list<T>::assign( std::initializer_list<T> ilist ){
+
+		if(m_size != 0) list<T>::clear(); 
+
+		insert(begin(),ilist.begin(),ilist.end());
+	}
+
 }
