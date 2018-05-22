@@ -6,8 +6,6 @@ namespace ls
 	template <typename T>
 		list<T>::list(void){
 
-			Node *m_head = new Node();
-			Node *m_tail = new Node();
 			m_size = 0;
 			m_head = new Node();
 			m_tail = new Node();
@@ -19,7 +17,7 @@ namespace ls
 		list<T>::~list(){
 
 			Node *temp = m_head;
-			while (temp->next != m_tail){
+			while (temp != m_tail){
 				temp = temp->next;
 				if(temp->prev != m_head){
 					delete temp->prev;
@@ -31,23 +29,29 @@ namespace ls
 
 		}
 
+	/* Insert a element in the beggining of list */
 	template <typename T>
 		void list<T>::push_front(const T& value){
 			Node *push = new Node(value,m_head,m_head->next);
 			m_head->next->prev = push;
 			m_head->next = push;
-			std::cout << m_head->next->data << std::endl;
-			std::cout << m_head->next << std::endl;
-			std::cout << m_head << std::endl;
-			std::cout << m_tail << std::endl;
+			m_size++;
 		}
+	/* Insert a element at the end of list */
+		template <typename T>
+		void list<T>::push_back( const T & value ){
 
+			Node *push = new Node(value,m_tail->prev,m_tail);
+			m_tail->prev->next = push;
+			m_tail->prev = push;
+			m_size++;
+		}
 	// [II] ITERATORS - DONE
 
 	/* Returns a iterator to the beginning of the list */
 	template <typename T>
 		typename ls::list<T>::iterator ls::list<T>::begin(){
-			return ls::list<T>::iterator(m_head);
+			return ls::list<T>::iterator(m_head->next);
 		}
 
 	/* Returns a constant iterator to the beginning of the list */
@@ -124,16 +128,53 @@ namespace ls
 				throw std::out_of_range("The list is empty!");
 			return m_tail->prev->data;
 		}
-
-	/* Insert a element in the beggining of list */
-	template <typename T>	
-		void push_front( const T & value ){
-		}
-
-	/* Insert a element at the end of list */
+	/*! Inserts value before itr position
+	 * @params itr
+	 * @params value
+	 * @return iterator to inserted value position
+	 * */
 	template <typename T>
-		void push_back( const T & value ){
+	typename list<T>::iterator list<T>::insert
+	(typename list<T>::const_iterator itr, const T & value ){
+
+		typename list<T>::Node* inserted =
+			new typename list<T>::Node(value,itr.current->prev,itr.current);
+		m_size++;
+		itr.current->prev->next = inserted;
+		itr.current->prev = inserted;
+		return inserted;
+	}
+	
+	/*! Inserts the initializer_list's elements before itr position
+	 * @params itr
+	 * @params ilist
+	 * @return iterator to inserted values position
+	 * */
+	template <typename T>
+	typename list<T>::iterator list<T>::insert( const_iterator pos, std::initializer_list<T> ilist ){
+
+			for (auto i = ilist.begin(); i < ilist.end(); ++i) {
+				list<T>::insert(pos,*i);	
+			}
+			return iterator(pos.current);
 		}
+
+	/*! Inserts the elements in the [first,last) range before itr position
+	 * @params itr
+	 * @params first
+	 * @params last
+	 * @return iterator to inserted values position
+	 * */
+	template <typename T>
+	template <typename InItr>	
+	typename list<T>::iterator list<T>::insert(iterator pos, InItr first, InItr last){
+
+		for (auto i = first; i != last; ++i) {
+			list<T>::insert(pos,*i);	
+		}
+		return pos;
+	}
+
 
 	/* Remove a element at the beginning of list */
 	template <typename T>	
@@ -148,4 +189,34 @@ namespace ls
 	template <typename T>	
 		void assign(const T& value ){
 		}
+
+	/*! Iterator operators */
+	template <typename T>
+	T & list<T>::iterator::operator * ( ){
+		return this->current->data;
+	}
+	
+	/*! Iterator operator ++ */
+	template <typename T>
+	typename list<T>::iterator & list<T>::iterator::operator ++( ){
+		this->current = this->current->next;
+		return *this;
+	}
+	/*! Iterator operator ++ */
+	template <typename T>
+	typename list<T>::iterator list<T>::iterator::operator ++(int ){
+		auto copy = *this;
+		this->current = this->current->next;
+		
+		return copy;
+	}
+
+	template <typename T>
+		bool list<T>::const_iterator::operator != ( const const_iterator & rhs ) const{
+
+	//		std::cout << "lhs  " << this->current << std::endl;
+	//		std::cout << "rhs  " << rhs.current << std::endl;
+			return this->current != rhs.current;
+	}
+
 }

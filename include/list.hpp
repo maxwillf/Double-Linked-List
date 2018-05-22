@@ -15,7 +15,6 @@ namespace ls
 			T data;
 			Node *prev;
 			Node *next;
-			Node(const T & d = T () , Node *p = nullptr, Node *n = nullptr): data (d),prev (p), next (n) {}
 			Node( T d = T () , Node *p = nullptr, Node *n = nullptr):data (d),prev (p), next (n){}
 		};
 		
@@ -25,7 +24,6 @@ namespace ls
 
 		public:
 
-		list( std::initializer_list<T> ilist );
 		
 		class const_iterator{
 			public:
@@ -72,6 +70,9 @@ namespace ls
 	
 		~list( );
 	
+		/*! \brief */
+		
+		list( std::initializer_list<T> ilist );
 		/*! \brief */
 
 		list( const list & );
@@ -172,7 +173,10 @@ namespace ls
 		iterator insert( const_iterator itr, const T & value );
 
 		iterator insert( const_iterator pos, std::initializer_list<T> ilist );
-
+		
+		template <typename InItr>	
+		iterator insert(iterator pos, InItr first, InItr last);
+	
 		iterator erase( const_iterator itr );
 
 		iterator erase( const_iterator first, const_iterator last );
