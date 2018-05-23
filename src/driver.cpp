@@ -88,5 +88,28 @@ int main(int argc, char *argv[])
 	for (auto i = lista4.begin(); i != lista4.end(); ++i) {
 		std::cout << *i << std::endl;
 	}
+	std::cout << "list3 size : " << lista3.size() << std::endl;
+	std::cout << "list4 size : " << lista4.size() << std::endl;
+
+	std::cout << "Teste operator lista4 == lista3 " << (lista4 == lista3) << std::endl;
+	std::cout << "Teste operator lista == lista3 " << (lista == lista3) << std::endl;
+	std::cout << "Teste operator lista4 != lista3 " << (lista4 != lista3) << std::endl;
+
+	ls::list<int> lista5(5);
+	for (auto i = lista5.begin(); i != lista5.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+	
+	std::cout << "Before pop front and back " << std::endl;
+	for (auto i = lista3.begin(); i != lista3.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
+	
+	std::cout << "Teste pop front and back " << std::endl;
+	lista3.pop_front();
+	lista3.pop_back();
+	for (auto i = lista3.begin(); i != lista3.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
 	return 0;
 }

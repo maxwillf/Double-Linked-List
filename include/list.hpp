@@ -84,6 +84,8 @@ namespace ls
 		/*! \brief */
 		
 		list( std::initializer_list<T> ilist );
+
+		explicit list(size_type count);
 		/*! \brief */
 
 		list( const list& );
@@ -195,8 +197,10 @@ namespace ls
 		const_iterator find( const T & value ) const;
 		
 };
-
-
+	template <typename T>
+	bool operator==(const list<T>& lhs,const list<T>& rhs);
+	template <typename T>
+	bool operator!=(const list<T>& lhs,const list<T>& rhs);
 
 }
 

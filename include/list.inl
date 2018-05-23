@@ -25,17 +25,22 @@ namespace ls
 	/*! @brief Constructor with the content of a initializer list
 	 *  @param ilist Initializer list who will fill the list		
 	 */
-	
 	template <typename T>
 		list<T>::list( std::initializer_list<T> ilist ): list<T>::list(){
 
 			insert(begin(),ilist.begin(),ilist.end());
 		}
 
+	/*! @brief constructor that initializer count elements with zero */
+	template <typename T>
+		list<T>::list(size_type count): list<T>::list() {
+
+			assign(count,0);	
+		}
+	
 	/*! @brief Copy constructor
 	 *  @param other A list to be copied
 	 */
-	
 	template <typename T>
 		list<T>::list( const list<T> & other ): list<T>::list(){
 			*this = other;
@@ -45,8 +50,7 @@ namespace ls
 	 *  @param other A list to be copied
 	 *  @return The new object
 	 */
-	
-	template <typename T>
+		template <typename T>
 		list<T>& list<T>::operator= ( const list<T> & other ){
 
 			
@@ -329,10 +333,10 @@ namespace ls
 	 */
 
 	template <typename T>	
-		void pop_front( ){
+		void list<T>::pop_front( ){
 			if(empty())
-				throw("pop_front() cannot remove elements from a empty list")
-			erase(begin())
+				throw("pop_front() cannot remove elements from a empty list");
+			erase(begin());
 		}
 
 	/*! @brief Remove a element in the end of list
@@ -340,19 +344,12 @@ namespace ls
 	 */
 	 
 	template <typename T>	
-		void pop_back( ){
+		void list<T>::pop_back( ){
 			if(empty())
-				throw std::out_of_range("pop_back() cannot remove elements from a empty list")
+				throw std::out_of_range("pop_back() cannot remove elements from a empty list");
 			erase(ls::list<T>::iterator(m_tail->prev));
 		}
 
-	/*! @brief Replace the content of the list with the param
-	 *	@param Value who's will be 
-	 */
-
-	template <typename T>	
-		void assign(const T& value ){
-		}
 
 	/*! @brief Returns a reference to the object pointed by iterator
 	 * 	@return The value who's iterator points
@@ -566,5 +563,29 @@ namespace ls
 
 		insert(begin(),ilist.begin(),ilist.end());
 	}
+	/*!  list operator == */
+	template <typename T>
+	bool operator==(const list<T> & lhs,const list<T>& rhs){
 
+		if(lhs.size() != rhs.size()) return false;
+		
+		auto ritr = rhs.cbegin();
+		for (auto itr = lhs.cbegin(); itr != lhs.cend(); ++itr, ++ritr) {
+			if(*itr != *ritr) return false;
+		}
+		return true;
+	}
+	
+	/*!  list operator != */
+	template <typename T>
+	bool operator!=(const list<T> & lhs,const list<T>& rhs){
+
+		if(lhs.size() != rhs.size()) return true;
+		
+		auto ritr = rhs.cbegin();
+		for (auto itr = lhs.cbegin(); itr != lhs.cend(); ++itr, ++ritr) {
+			if(*itr != *ritr) return true;
+		}
+		return false;
+	}
 }
