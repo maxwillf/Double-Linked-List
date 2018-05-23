@@ -73,96 +73,44 @@ namespace ls
 
 		// [I] SPECIAL MEMBERS
 
-		/*! \brief Default constructor */
-	
 		list(void);
 
-		/*! \brief Default destructor */
-	
 		~list( );
 	
-		/*! \brief */
-		
 		list( std::initializer_list<T> ilist );
 
 		explicit list(size_type count);
-		/*! \brief */
-
+		
 		list( const list& );
-	
-		/*! \brief */
-			
+				
 		list & operator = ( const list & );
 		 
 		// [II] ITERATORS
-			
-		/*! \brief Returns a iterator that points to the beginning of the list
-		 * \return Iterator to the beginning of the list 
-	 	*/
-
+	
 		iterator begin();
-				
-		/*! \brief Returns a constant iterator that points to the beginning of the list
-	 	* \return Constant iterator to the beginning of the list
-	 	*/
-
+	
 		const_iterator cbegin( ) const;
 				
-		/*! \brief Returns a iterator that points to the end of list
-	 	* \return Iterator to the end of list
-	 	*/			
-		
 		iterator end( );
-
-		/*! \brief Returns a constant iterator to the end of list
-	 	* \return Constant iterator to the end of list
-	 	*/
-
+	
 		const_iterator cend( ) const;
 				
 		// [III] Capacity 
 				
-		/*! \brief Returns the number of elements in the list
-		 * \return Logical size of list
- 	 	 */
-			
 		int size( ) const;
-
-		/*! \brief Verifies if the list is empty
-	 	 * \return True if is the list empty, else returns False
-	 	 */		
 		
 		bool empty( ) const;
 			
 		// [IV] Modifiers
 		
-		/*! \brief Clear the list
-		 */
-		
 		void clear( );
-
-		/*! \brief Returns a reference to the first element of the list
-	 	 * \return The value of the first element of the list
-	  	 */					
 
 		T & front( );
 			
-		/*! \brief Returns a constant reference to the first element of the list
-		 * \return The value of the first element of the list
-		 */	
-			
 		const T & front( ) const;
 				
-		/*! \brief Returns a reference to the last element of the list
-		 * \return The value of the last element of the list
-	 	 */
-		
 		T & back( );
 	
-		/*! \brief Returns a constant reference to the last element of the list 
-		 * \return The value of the last element of the list
-		 */		
-
 		const T & back( ) const;
 				
 		void push_front( const T & value );

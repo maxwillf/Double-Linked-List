@@ -1,4 +1,4 @@
-Target = list 
+Target = driverlist 
 INCLUDES = include
 CXX = g++
 CXXFLAGS = -W -std=c++11 -g -ggdb -I $(INCLUDES)
