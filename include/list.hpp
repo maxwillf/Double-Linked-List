@@ -79,6 +79,8 @@ namespace ls
 		/*! \brief */
 		
 		list( std::initializer_list<T> ilist );
+
+		explicit list(size_type count);
 		/*! \brief */
 
 		list( const list& );

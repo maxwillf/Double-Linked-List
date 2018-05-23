@@ -94,5 +94,11 @@ int main(int argc, char *argv[])
 	std::cout << "Teste operator lista4 == lista3 " << (lista4 == lista3) << std::endl;
 	std::cout << "Teste operator lista == lista3 " << (lista == lista3) << std::endl;
 	std::cout << "Teste operator lista4 != lista3 " << (lista4 != lista3) << std::endl;
+
+	ls::list<int> lista5(5);
+
+	for (auto i = lista5.begin(); i != lista5.end(); ++i) {
+		std::cout << *i << std::endl;
+	}
 	return 0;
 }

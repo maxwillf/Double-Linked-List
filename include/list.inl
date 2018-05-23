@@ -13,18 +13,25 @@ namespace ls
 			m_tail->prev = m_head;
 		}
 
+		/*! initializer list constructor */	
 	template <typename T>
 		list<T>::list( std::initializer_list<T> ilist ): list<T>::list(){
 
 			insert(begin(),ilist.begin(),ilist.end());
 		}
+		template <typename T>
+		list<T>::list(size_type count): list<T>::list() {
+
+			assign(count,0);	
+		}
 	
+		/*! copy constructor */	
 	template <typename T>
 		list<T>::list( const list<T> & other ): list<T>::list(){
 			*this = other;
 		} 
 		
-	
+		/*! assignment operator = */	
 		template <typename T>
 		list<T>& list<T>::operator= ( const list<T> & other ){
 
@@ -250,9 +257,6 @@ namespace ls
 		void pop_back( ){
 		}
 
-	template <typename T>	
-		void assign(const T& value ){
-		}
 
 	/*! Iterator operators */
 	template <typename T>
