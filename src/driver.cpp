@@ -9,6 +9,7 @@ void print_list(ls::list<T> A ){
 	std::cout << ">>> Current List: [ ";
 	ls::copy( A.begin(), A.end(), std::ostream_iterator< int >( std::cout, " " ) );
 	std::cout << "]\n";
+	std::cout << "\n";
 }
 
 
@@ -22,11 +23,10 @@ int main(int argc, char *argv[])
 	print_list(lista);
 	std::cout << std::endl;
 
+	std::cout << "Teste insert initializer list" << std::endl;
 	auto x = lista.insert(lista.begin(),{-1,-2,-3,-4,-5});
 	print_list(lista);
 
-	std::cout << "Teste insert initializer list" << std::endl;
-	print_list(lista);	
 	std::cout <<  std::endl;
 	std::cout << "Teste retorno insert: initializer list: " << *x << std::endl;
 
@@ -51,8 +51,10 @@ int main(int argc, char *argv[])
 	//std::cout << "list size after clear : " << lista.size() << std::endl;
 	
 	
+	std::cout << "Teste constructor  initializer list " << std::endl;
 	ls::list<int> lista2{{1,2,3,4}};
-	std::cout << "list2 itializer list : " << lista2.size() << std::endl;
+	print_list(lista2);
+	std::cout << "list2 initializer list size : " << lista2.size() << std::endl;
 
 	print_list(lista2);
 	lista2.assign(5,7);
@@ -87,6 +89,7 @@ int main(int argc, char *argv[])
 	std::cout << "Teste operator lista == lista3 " << (lista == lista3) << std::endl;
 	std::cout << "Teste operator lista4 != lista3 " << (lista4 != lista3) << std::endl;
 
+	std::cout << "Teste constructor explicit list(size_type) " << std::endl;
 	ls::list<int> lista5(5);
 	print_list(lista5);	
 	
