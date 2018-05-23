@@ -1,20 +1,29 @@
 #include "list.hpp"
 #include <iostream>
 
+
+
+
+template <typename T>
+void print_list(ls::list<T> A ){
+	std::cout << ">>> Original array: [ ";
+	ls::copy( A.begin(), A.end(), std::ostream_iterator< int >( std::cout, " " ) );
+	std::cout << "]\n";
+}
+
+
 int main(int argc, char *argv[])
 {
+	std::cout << "Chamando list() " << std::endl;
 	ls::list<int> lista;
 	lista.push_back(6);
 	lista.push_front(5);
-	auto y = lista.insert(lista.begin()+1,3);
-	std::cout << *y << std::endl;
 	std::cout << "Teste push_front e push_back " << std::endl;
-	for (auto i = lista.begin(); i != lista.end(); ++i){
-		std::cout << *i << std::endl;
-	}
+	print_list(lista);
 	std::cout << std::endl;
 
 	auto x = lista.insert(lista.begin(),{-1,-2,-3,-4,-5});
+	print_list(lista);
 
 	std::cout << "Teste insert initializer list" << std::endl;
 	for (auto i = lista.begin(); i != lista.end(); ++i){
