@@ -325,6 +325,9 @@ namespace ls
 
 	template <typename T>	
 		void pop_front( ){
+			if(empty())
+				throw("pop_front() cannot remove elements from a empty list")
+			erase(begin())
 		}
 
 	/*! @brief Remove a element in the end of list
@@ -333,6 +336,9 @@ namespace ls
 	 
 	template <typename T>	
 		void pop_back( ){
+			if(empty())
+				throw std::out_of_range("pop_back() cannot remove elements from a empty list")
+			erase(ls::list<T>::iterator(m_tail->prev));
 		}
 
 	/*! @brief Replace the content of the list with the param
