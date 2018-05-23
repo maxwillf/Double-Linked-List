@@ -1,5 +1,10 @@
 #include "list.hpp"
 
+/*!
+ * @file 	list.inl
+ * @author 	Felipe Andrade and Max William
+ */
+
 namespace ls
 {
 

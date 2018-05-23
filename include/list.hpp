@@ -5,6 +5,11 @@
 #include <algorithm>
 #include <iterator> //for std::distance
 
+/*!
+ * @file 	list.hpp
+ * @author 	Felipe Andrade and Max William
+ */
+
 
 using size_type = size_t;
 
