@@ -190,8 +190,10 @@ namespace ls
 		const_iterator find( const T & value ) const;
 		
 };
-
-
+	template <typename T>
+	bool operator==(const list<T>& lhs,const list<T>& rhs);
+	template <typename T>
+	bool operator!=(const list<T>& lhs,const list<T>& rhs);
 
 }
 

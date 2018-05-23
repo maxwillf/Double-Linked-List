@@ -405,5 +405,29 @@ namespace ls
 
 		insert(begin(),ilist.begin(),ilist.end());
 	}
+	/*!  list operator == */
+	template <typename T>
+	bool operator==(const list<T> & lhs,const list<T>& rhs){
 
+		if(lhs.size() != rhs.size()) return false;
+		
+		auto ritr = rhs.cbegin();
+		for (auto itr = lhs.cbegin(); itr != lhs.cend(); ++itr, ++ritr) {
+			if(*itr != *ritr) return false;
+		}
+		return true;
+	}
+	
+	/*!  list operator != */
+	template <typename T>
+	bool operator!=(const list<T> & lhs,const list<T>& rhs){
+
+		if(lhs.size() != rhs.size()) return true;
+		
+		auto ritr = rhs.cbegin();
+		for (auto itr = lhs.cbegin(); itr != lhs.cend(); ++itr, ++ritr) {
+			if(*itr != *ritr) return true;
+		}
+		return false;
+	}
 }
