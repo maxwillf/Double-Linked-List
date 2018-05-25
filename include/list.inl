@@ -607,4 +607,15 @@ namespace ls
 		}
 		return false;
 	}
+
+	/*! operator [] */
+	template <typename T>
+	T& list<T>::operator[]( size_type index){
+
+		if (index > m_size/2){
+
+			return *(end()-(m_size-index));
+		}
+		else return *(begin()+index);
+	}
 }

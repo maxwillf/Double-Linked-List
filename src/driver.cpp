@@ -1,9 +1,6 @@
 #include "list.hpp"
 #include <iostream>
 
-
-
-
 template <typename T>
 void print_list(ls::list<T> A ){
 	std::cout << ">>> Current List: [ ";
@@ -18,7 +15,12 @@ int main(int argc, char *argv[])
 	std::cout << "Chamando list() " << std::endl;
 	ls::list<int> lista;
 	lista.push_back(6);
+	lista.push_back(1);
+	lista.push_back(2);
+	lista.push_back(3);
 	lista.push_front(5);
+	std::cout << "Brackets [] " << lista[5] << std::endl;
+
 	std::cout << "Teste push_front e push_back " << std::endl;
 	print_list(lista);
 	std::cout << std::endl;
@@ -99,5 +101,6 @@ int main(int argc, char *argv[])
 	lista3.pop_front();
 	lista3.pop_back();
 	print_list(lista3);
+
 	return 0;
 }

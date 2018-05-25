@@ -87,6 +87,8 @@ namespace ls
 		 
 		// [II] ITERATORS
 	
+		T& operator[]( size_type index);
+
 		iterator begin();
 	
 		const_iterator cbegin( ) const;
