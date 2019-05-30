@@ -12,7 +12,7 @@ Also, clone the repository
 # Compile
 Change directory to the list directory
 
-`cd Double-Linked-List`
+`cd Doubly-Linked-List`
 
 And execute `make` to compile the program.
 # Execute
