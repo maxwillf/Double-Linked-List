@@ -1,4 +1,4 @@
-# Abstract Data Type based on a Double linked list 
+# Abstract Data Type based on a Doubly linked list 
 
 # Objectives
 The objective of the project is implement a ADT list as `std::list`
